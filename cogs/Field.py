@@ -11,6 +11,12 @@ class Field(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.Cog.listener()
+    async def on_message(message):
+        if message.content.startswith('?pet') or message.content.startswith('?qpet') or message.content.startswith('hug') or message.content.startswith('qhug'):
+            regexCommands = commands.bot.get_cog('RegexCommands')
+            await regexCommands.regexChecks(message)
+
     async def arpr(self, ctx, url):
         links = []
         for _ in range(ctx.message.content.split(" ")[0].count("r")):
